@@ -33,6 +33,6 @@ public class CarsList {
 
 	public int getRental_price() {
 		return rental_price;
-	}
+	}	
 	
 }

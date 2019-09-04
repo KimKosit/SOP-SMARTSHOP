@@ -1,8 +1,5 @@
 package carRental;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CarsListFactory {
 	
 	public static CarsList[] cars_list = new CarsList[] {
@@ -24,6 +21,14 @@ public class CarsListFactory {
         return null;
 	}
 	
-	
+	public static Rental rentCar(int car_id, int time) {
+		CarsList _car = null;
+		for (CarsList car : cars_list) {
+			if(car.getCar_id() == car_id) {
+				_car = car;
+			}
+		}
+		return new Rental(_car.getCar_id(), _car.getCar_name(), _car.getRental_price(), time, _car.getRental_price()*time);		
+	}
 
 }

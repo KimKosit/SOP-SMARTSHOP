@@ -29,10 +29,15 @@ public class CarRentalApp
     	return "<b>Welcome to KimKho Car Rental!</b>"
     			+ "<br>To view all model please go to \"localhost:port/carslist/\""
     			+ "<br>To view more detail about the model you want please go to \"localhost:port/carslist/id/\""
-    			+ "<br>To rent a car please go to \"localhost:port/rental\"";
+    			+ "<br>To rent a car please POST "
+    			+ "<br>{"
+    			+ "<br>\"car_id\": Car ID"
+    			+ "<br>\"time\": Amount of time in hours"
+    			+ "<br>}"
+    			+ "<br>to \"localhost:port/rental\"";
     }
     
-    @RequestMapping("/carslist")
+    @RequestMapping(value = "/carslist", method = RequestMethod.GET)
     CarsList[] cars_list() {
     	return CarsListFactory.getAllCars_list();
     }
@@ -42,6 +47,9 @@ public class CarRentalApp
 		return CarsListFactory.getCars_list(id);
     }
     
-    
+    @RequestMapping(value = "/rental", method = RequestMethod.POST)
+    Rental rentCar(@RequestBody Rental rental) {
+    	return CarsListFactory.rentCar(rental.getCar_id(), rental.getTime());
+    }
     
 }
